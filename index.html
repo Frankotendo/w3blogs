@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark News Room</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --accent-color: #bb86fc;
+            --card-bg: #1e1e1e;
+            --header-bg: #1a1a1a;
+            --ads-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--header-bg);
+        }
+
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        main {
+            padding: 1rem;
+        }
+
+        .news-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-card h2 {
+            color: var(--accent-color);
+        }
+
+        .ads-section {
+            background-color: var(--ads-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem auto;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .ads-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .ad-container {
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            border: 1px dashed var(--accent-color);
+            color: var(--text-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--header-bg);
+            border-top: 1px solid var(--accent-color);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+        }
+
+        form input, form textarea {
+            padding: 0.5rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+        }
+
+        form button {
+            padding: 0.5rem;
+            background-color: var(--accent-color);
+            border: none;
+            color: var(--bg-color);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dark News Room</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <main>
+        <section id="home">
+            <div class="news-card">
+                <h2>Welcome to Dark News Room</h2>
+                <p>Stay updated with the latest news in a sleek dark theme.</p>
+            </div>
+        </section>
+
+        <!-- Dynamic Ad Slot 1 -->
+        <div class="ads-section">
+            <h2>Advertisement</h2>
+            <div id="ad-slot-1" class="ad-container" data-ad-id="banner-ad-1">
+                <p>Loading ad...</p>
+            </div>
+        </div>
+
+        <section id="news">
+            <div class="news-card">
+                <h2>Latest News</h2>
+                <p>This is where your news content will go. Update this section as needed.</p>
+            </div>
+        </section>
+
+        <!-- Dynamic Ad Slot 2 -->
+        <div class="ads-section">
+            <h2>Advertisement</h2>
+            <div id="ad-slot-2" class="ad-container" data-ad-id="banner-ad-2">
+                <p>Loading ad...</p>
+            </div>
+        </div>
+
+        <section id="contact">
+            <div class="news-card">
+                <h2>Contact Us</h2>
+                <!-- Netlify Form (Enabled) -->
+                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p hidden>
+                        <label>Don’t fill this out: <input name="bot-field"></label>
+                    </p>
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Dark News Room. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Dynamic Ad Loading (Replace with your ad network logic)
+        function loadAds() {
+            const adSlots = [
+                { id: "ad-slot-1", adId: "banner-ad-1" },
+                { id: "ad-slot-2", adId: "banner-ad-2" }
+            ];
+
+            // Simulate ad loading (replace with actual ad script)
+            adSlots.forEach(slot => {
+                const container = document.getElementById(slot.id);
+                if (container) {
+                    setTimeout(() => {
+                        container.innerHTML = `
+                            <div>
+                                <p>Ad ID: <strong>${slot.adId}</strong></p>
+                                <!-- Replace with actual ad script (e.g., Google AdSense) -->
+                                <!-- Example: <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ID"></script> -->
+                            </div>
+                        `;
+                    }, 1000); // Simulate network delay
+                }
+            });
+        }
+
+        // Load ads when the page finishes loading
+        window.addEventListener("DOMContentLoaded", loadAds);
+    </script>
+</body>
+</html>
